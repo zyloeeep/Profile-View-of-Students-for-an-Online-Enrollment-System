@@ -1,0 +1,6 @@
+{# Usage: {% include "components/avatar.html" with first_name="Maria" last_name="Santos" size="lg" %} #}
+{% if size == "lg" %}
+    <span class="grid h-20 w-20 shrink-0 place-items-center rounded-full border-4 border-accent bg-brand-soft font-serif text-2xl font-semibold text-brand" aria-hidden="true">{{ first_name|slice:":1"|upper }}{{ last_name|slice:":1"|upper }}</span>
+{% else %}
+    <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand-soft text-sm font-semibold text-brand" aria-hidden="true">{{ first_name|slice:":1"|upper }}{{ last_name|slice:":1"|upper }}</span>
+{% endif %}

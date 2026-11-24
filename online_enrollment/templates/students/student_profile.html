@@ -1,0 +1,62 @@
+{% extends "admin_layout.html" %}
+{% load static %}
+
+{% block title %}{{ student.first_name }} {{ student.last_name }}{% endblock %}
+
+{% block page %}
+
+    {# Back link #}
+    <p class="mb-4 text-sm text-muted">
+        <a href="{% url 'students:list' %}" class="text-brand underline">Student List</a>
+        / {{ student.first_name }} {{ student.last_name }}
+    </p>
+
+    {# Profile header #}
+    <div class="mb-6 flex flex-wrap items-center gap-5 rounded-xl border border-line bg-surface p-5">
+        {% include "components/avatar.html" with first_name=student.first_name last_name=student.last_name size="lg" %}
+
+        <div class="min-w-48 flex-1">
+            <h1 class="text-3xl font-bold">{{ student.first_name }} {{ student.last_name }}</h1>
+            <p class="mb-2 mt-1 text-muted">{{ student.student_id }} · {{ student.program }}, {{ student.year_level }}</p>
+            {% include "components/status_badge.html" with status=student.status %}
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+            <a href="{% url 'enrollment:enroll' student.pk %}"
+            class="rounded-lg bg-brand-solid px-4 py-2 text-sm font-semibold text-white hover:bg-brand-solid/80">
+                Enroll for a new term
+            </a>
+            <a href="{% url 'students:list' %}"
+               class="rounded-lg border border-line px-4 py-2 text-sm font-semibold text-brand hover:bg-brand-soft">
+                Back to list
+            </a>
+        </div>
+    </div>
+
+    {# Tab navigation #}
+    <div class="mb-6 flex gap-1 overflow-x-auto border-b border-line" role="tablist" aria-label="Student information sections">
+        <button type="button" role="tab" data-tab="personal" aria-selected="true"
+                class="whitespace-nowrap border-b-4 border-transparent px-4 py-3 text-sm font-medium text-muted hover:text-ink aria-selected:border-accent aria-selected:font-semibold aria-selected:text-brand">Personal</button>
+        <button type="button" role="tab" data-tab="family" aria-selected="false"
+                class="whitespace-nowrap border-b-4 border-transparent px-4 py-3 text-sm font-medium text-muted hover:text-ink aria-selected:border-accent aria-selected:font-semibold aria-selected:text-brand">Family</button>
+        <button type="button" role="tab" data-tab="education" aria-selected="false"
+                class="whitespace-nowrap border-b-4 border-transparent px-4 py-3 text-sm font-medium text-muted hover:text-ink aria-selected:border-accent aria-selected:font-semibold aria-selected:text-brand">Education</button>
+        <button type="button" role="tab" data-tab="enrollment" aria-selected="false"
+                class="whitespace-nowrap border-b-4 border-transparent px-4 py-3 text-sm font-medium text-muted hover:text-ink aria-selected:border-accent aria-selected:font-semibold aria-selected:text-brand">Enrollment</button>
+        <button type="button" role="tab" data-tab="documents" aria-selected="false"
+                class="whitespace-nowrap border-b-4 border-transparent px-4 py-3 text-sm font-medium text-muted hover:text-ink aria-selected:border-accent aria-selected:font-semibold aria-selected:text-brand">Documents</button>
+    </div>
+
+    {# Sections: the tabs show one at a time #}
+    <div id="tab-panels">
+        {% include "students/sections/personal.html" %}
+        {% include "students/sections/family.html" %}
+        {% include "students/sections/education.html" %}
+        {% include "students/sections/enrollment.html" %}
+    </div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/profile_tabs.js' %}"></script>
+{% endblock %}

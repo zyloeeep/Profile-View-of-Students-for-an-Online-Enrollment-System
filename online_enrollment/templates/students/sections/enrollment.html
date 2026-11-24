@@ -1,0 +1,16 @@
+<section id="enrollment" class="rounded-xl border border-line bg-surface p-5">
+    <h2 class="mb-4 text-xl font-semibold">Enrollment information</h2>
+    <dl class="grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+        {% include "components/info_field.html" with label="Student ID" value=student.student_id %}
+        {% include "components/info_field.html" with label="Academic year" value=student.academic_year %}
+        {% include "components/info_field.html" with label="Semester" value=student.semester %}
+        {% include "components/info_field.html" with label="Program" value=student.program %}
+        {% include "components/info_field.html" with label="Year level" value=student.year_level %}
+        {% include "components/info_field.html" with label="Section" value=student.section %}
+        {% include "components/info_field.html" with label="Enrollment date" value=student.enrollment_date %}
+        <div>
+            <dt class="text-xs text-muted">Enrollment status</dt>
+            <dd class="mt-1">{% include "components/status_badge.html" with status=student.status %}</dd>
+        </div>
+    </dl>
+</section>

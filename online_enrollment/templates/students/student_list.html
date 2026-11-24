@@ -1,0 +1,138 @@
+{% extends "admin_layout.html" %}
+
+{% block title %}Student List{% endblock %}
+
+{% block page %}
+    <div class="mb-6 flex flex-wrap items-start justify-between gap-4">
+    <div>
+        <h1 class="text-4xl font-bold">Student List</h1>
+        <p class="mt-3 text-lg text-muted">See who is enrolled in a class, then open a student to review their profile.</p>
+    </div>
+
+    <a href="{% url 'students:register' %}"
+    class="shrink-0 rounded-lg bg-brand-solid px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-solid/80">
+        + Register Student
+    </a>
+    </div>
+
+    {# Summary counts (real numbers from the database, following the current filters) #}
+    <div class="my-6 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-4">
+        <div class="bg-surface px-5 py-3">
+            <p class="font-serif text-2xl font-semibold">{{ total_students }}</p>
+            <p class="text-sm text-muted">Students</p>
+        </div>
+        <div class="bg-surface px-5 py-3">
+            <p class="font-serif text-2xl font-semibold">{{ enrolled_count }}</p>
+            <p class="text-sm text-muted">Enrolled</p>
+        </div>
+        <div class="bg-surface px-5 py-3">
+            <p class="font-serif text-2xl font-semibold">{{ pending_count }}</p>
+            <p class="text-sm text-muted">Pending</p>
+        </div>
+        <div class="bg-surface px-5 py-3">
+            <p class="font-serif text-2xl font-semibold">{{ dropped_count }}</p>
+            <p class="text-sm text-muted">Dropped</p>
+        </div>
+    </div>
+
+    {# Student list panel #}
+    <section class="rounded-xl border border-line bg-surface">
+
+        {# Search and filters (GET form) #}
+        <form method="get" action="{% url 'students:list' %}" class="flex flex-wrap gap-3 border-b border-line p-4">
+            <input type="search" name="q" value="{{ q }}" placeholder="Search by name or student ID" aria-label="Search students"
+                   class="min-h-10 w-full rounded-lg border border-line bg-page px-3 text-sm sm:w-auto">
+
+            <select name="program" aria-label="Program" class="min-h-10 w-full rounded-lg border border-line bg-page px-3 text-sm sm:w-auto">
+                <option value="">All programs</option>
+                {% for program in programs %}
+                    <option value="{{ program.code }}" {% if selected_program == program.code %}selected{% endif %}>{{ program.code }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="year_level" aria-label="Year level" class="min-h-10 w-full rounded-lg border border-line bg-page px-3 text-sm sm:w-auto">
+                <option value="">All year levels</option>
+                {% for value, label in year_level_choices %}
+                    <option value="{{ value }}" {% if selected_year_level == value|stringformat:"s" %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="status" aria-label="Enrollment status" class="min-h-10 w-full rounded-lg border border-line bg-page px-3 text-sm sm:w-auto">
+                <option value="">All statuses</option>
+                {% for value, label in status_choices %}
+                    <option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="gender" aria-label="Gender" class="min-h-10 w-full rounded-lg border border-line bg-page px-3 text-sm sm:w-auto">
+                <option value="">All genders</option>
+                {% for value, label in gender_choices %}
+                    <option value="{{ value }}" {% if selected_gender == value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit"
+                    class="rounded-lg bg-brand-solid px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-solid/80">
+                Filter
+            </button>
+
+            {% if has_filters %}
+                <a href="{% url 'students:list' %}" class="rounded-lg bg-brand-solid px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-solid/80">Clear</a>
+            {% endif %}
+        </form>
+
+        {# Student table: cards on phones, a real table from md up #}
+        <table class="block w-full text-left text-sm md:table">
+            <thead class="hidden md:table-header-group">
+                <tr class="border-b border-line text-xs uppercase tracking-wide text-muted">
+                    <th scope="col" class="px-4 py-3 font-semibold">Student</th>
+                    <th scope="col" class="px-4 py-3 font-semibold">ID</th>
+                    <th scope="col" class="px-4 py-3 font-semibold">Gender</th>
+                    <th scope="col" class="px-4 py-3 font-semibold">Program</th>
+                    <th scope="col" class="px-4 py-3 font-semibold">Year level</th>
+                    <th scope="col" class="px-4 py-3 font-semibold">Status</th>
+                    <th scope="col" class="px-4 py-3 font-semibold"><span class="sr-only">Action</span></th>
+                </tr>
+            </thead>
+            <tbody class="block md:table-row-group">
+                {% for student in students %}
+                    <tr class="block border-b border-line px-0 py-3 last:border-b-0 hover:bg-page md:table-row md:py-0">
+                        <td class="block px-4 py-1 md:table-cell md:py-3">
+                            <div class="flex items-center gap-3">
+                                {% include "components/avatar.html" with first_name=student.first_name last_name=student.last_name %}
+                                <span class="font-semibold">{{ student.list_name }}</span>
+                            </div>
+                        </td>
+                        <td data-label="ID" class="block px-4 py-1 before:mr-2 before:text-muted before:content-[attr(data-label)] md:table-cell md:py-3 md:before:content-none">{{ student.student_id }}</td>
+                        <td data-label="Gender" class="block px-4 py-1 before:mr-2 before:text-muted before:content-[attr(data-label)] md:table-cell md:py-3 md:before:content-none">{{ student.gender }}</td>
+                        <td data-label="Program" class="block px-4 py-1 before:mr-2 before:text-muted before:content-[attr(data-label)] md:table-cell md:py-3 md:before:content-none">{{ student.latest_enrollment.program.code|default:"—" }}</td>
+                        <td data-label="Year level" class="block px-4 py-1 before:mr-2 before:text-muted before:content-[attr(data-label)] md:table-cell md:py-3 md:before:content-none">{% if student.latest_enrollment %}{{ student.latest_enrollment.get_year_level_display }}{% else %}—{% endif %}</td>
+                        <td data-label="Status" class="block px-4 py-1 before:mr-2 before:text-muted before:content-[attr(data-label)] md:table-cell md:py-3 md:before:content-none">
+                            {% if student.latest_enrollment %}
+                                {% include "components/status_badge.html" with status=student.latest_enrollment.status|lower %}
+                            {% else %}
+                                —
+                            {% endif %}
+                        </td>
+                        <td class="block px-4 pt-2 pb-1 md:table-cell md:py-3 md:text-right">
+                            <a href="{% url 'students:profile' student.pk %}" class="font-semibold text-brand hover:underline">View profile</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr class="block md:table-row">
+                        <td colspan="7" class="block px-4 py-10 text-center text-muted md:table-cell">
+                            {% if has_filters %}
+                                No students match your filters.
+                            {% else %}
+                                No students yet. Students will appear here once they enroll.
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p class="border-t border-line px-4 py-3 text-sm text-muted">Showing {{ total_students }} student{{ total_students|pluralize }}{% if has_filters %} of {{ all_students_count }} total{% endif %}</p>
+
+    </section>
+{% endblock %}

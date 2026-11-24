@@ -1,0 +1,27 @@
+<section id="documents" class="rounded-xl border border-line bg-surface p-5">
+    <h2 class="mb-4 text-xl font-semibold">Requirements and documents</h2>
+
+    <div class="mb-2 flex items-center justify-between gap-3 border-b border-line pb-4">
+        <span class="font-medium">Document submission status</span>
+        {% include "components/status_badge.html" with status=student.documents_status|default:"pending" %}
+    </div>
+
+    <ul class="divide-y divide-line">
+        <li class="flex items-center justify-between gap-3 py-3">
+            <span>Birth certificate</span>
+            {% include "components/status_badge.html" with status=student.birth_certificate|default:"missing" %}
+        </li>
+        <li class="flex items-center justify-between gap-3 py-3">
+            <span>Form 138 / Report card</span>
+            {% include "components/status_badge.html" with status=student.report_card|default:"missing" %}
+        </li>
+        <li class="flex items-center justify-between gap-3 py-3">
+            <span>Good moral certificate</span>
+            {% include "components/status_badge.html" with status=student.good_moral|default:"missing" %}
+        </li>
+        <li class="flex items-center justify-between gap-3 py-3">
+            <span>Other required documents</span>
+            {% include "components/status_badge.html" with status=student.other_documents|default:"missing" %}
+        </li>
+    </ul>
+</section>

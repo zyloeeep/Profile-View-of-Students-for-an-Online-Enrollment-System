@@ -1,0 +1,8 @@
+{# Usage: {% include "components/status_badge.html" with status="enrolled" %} #}
+{% if status == "enrolled" or status == "submitted" or status == "complete" %}
+    <span class="inline-block rounded-full bg-ok-soft px-2.5 py-0.5 text-xs font-semibold text-ok">{{ status|title }}</span>
+{% elif status == "pending" or status == "incomplete" %}
+    <span class="inline-block rounded-full bg-warn-soft px-2.5 py-0.5 text-xs font-semibold text-warn">{{ status|title }}</span>
+{% else %}
+    <span class="inline-block rounded-full bg-bad-soft px-2.5 py-0.5 text-xs font-semibold text-bad">{{ status|title }}</span>
+{% endif %}

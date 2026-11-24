@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Online Enrollment System{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="min-h-screen bg-page font-sans text-ink antialiased">
+{% for message in messages %}
+  <div class="mb-4 rounded-lg px-4 py-3 {% if message.tags == 'success' %}bg-green-50 text-green-800{% else %}bg-red-50 text-red-700{% endif %}">{{ message }}</div>
+{% endfor %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block extra_js %}
+    {% endblock %}
+
+</body>
+</html>

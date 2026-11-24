@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-4xl mx-auto py-8 text-ink">
+    <a href="{% url 'students:list' %}" class="mb-4 inline-block text-sm text-brand underline">← Back to Student List</a>
+
+    <h1 class="text-3xl font-bold text-ink mb-2">Student Registration</h1>
+    <p class="text-muted mb-6">Fill out the form. Your enrollment will be reviewed by the registrar.</p>
+
+    <form method="post" class="space-y-6">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <div class="rounded-lg bg-bad-soft text-bad px-4 py-3">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        {% for title, fields in form.sections %}
+        <section class="bg-surface rounded-2xl border border-line p-6">
+            <h2 class="text-lg font-semibold text-ink mb-4">{{ title }}</h2>
+            <div class="grid md:grid-cols-2 gap-5">
+                {% for field in fields %}
+                    {% include "components/form_field.html" with field=field %}
+                {% endfor %}
+            </div>
+        </section>
+        {% endfor %}
+
+        <div class="flex flex-wrap items-center gap-3">
+            <button class="bg-brand-solid text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-brand-solid/80">
+                Submit registration
+            </button>
+            <a href="{% url 'students:list' %}"
+               class="rounded-lg border border-line px-6 py-2.5 font-semibold text-brand hover:bg-brand-soft">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

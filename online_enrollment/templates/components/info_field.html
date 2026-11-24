@@ -1,0 +1,5 @@
+{# Usage: {% include "components/info_field.html" with label="Age" value=student.age %} #}
+<div>
+    <dt class="text-xs text-muted">{{ label }}</dt>
+    <dd class="mt-0.5 break-words font-medium">{{ value|default:"—" }}</dd>
+</div>

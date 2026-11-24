@@ -1,0 +1,15 @@
+<section id="personal" class="rounded-xl border border-line bg-surface p-5">
+    <h2 class="mb-4 text-xl font-semibold">Personal information</h2>
+    <dl class="grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+        {% include "components/info_field.html" with label="Student ID" value=student.student_id %}
+        {% include "components/info_field.html" with label="Full name" value=student.full_name %}
+        {% include "components/info_field.html" with label="Date of birth" value=student.birth_date %}
+        {% include "components/info_field.html" with label="Age" value=student.age %}
+        {% include "components/info_field.html" with label="Gender" value=student.gender %}
+        {% include "components/info_field.html" with label="Civil status" value=student.civil_status %}
+        {% include "components/info_field.html" with label="Nationality" value=student.nationality %}
+        {% include "components/info_field.html" with label="Contact number" value=student.contact_number %}
+        {% include "components/info_field.html" with label="Email address" value=student.email %}
+        {% include "components/info_field.html" with label="Complete address" value=student.address %}
+    </dl>
+</section>

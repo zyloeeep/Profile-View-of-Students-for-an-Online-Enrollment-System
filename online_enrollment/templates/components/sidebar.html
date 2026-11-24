@@ -1,0 +1,100 @@
+
+<aside
+    class="flex min-h-screen flex-col bg-sidebar p-2 text-white md:sticky md:top-0 md:h-screen md:overflow-y-auto md:p-4"
+    aria-label="Admin navigation"
+>
+
+    <!-- Logo -->
+    <div class="whitespace-nowrap px-3 font-serif text-lg font-bold md:mb-4 md:border-b-4 md:border-accent md:px-3 md:pb-5">
+        Enrollment System
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="mt-2 flex flex-1 gap-1 md:flex-col md:gap-1">
+
+        <!-- Dashboard -->
+        <a
+            href="#"
+            class="whitespace-nowrap rounded-md px-3 py-2 text-sm text-white/70 hover:bg-white/10 hover:text-white"
+        >
+            Dashboard
+        </a>
+
+        <!-- Classes & Students -->
+        {% if request.resolver_match.app_name == 'students' %}
+            <a
+                href="{% url 'students:list' %}"
+                aria-current="page"
+                class="whitespace-nowrap rounded-md bg-white/15 px-3 py-2 text-sm font-semibold text-white"
+            >
+                Classes &amp; students
+            </a>
+        {% else %}
+            <a
+                href="{% url 'students:list' %}"
+                class="whitespace-nowrap rounded-md px-3 py-2 text-sm text-white/70 hover:bg-white/10 hover:text-white"
+            >
+                Classes &amp; students
+            </a>
+        {% endif %}
+
+        <!-- Enrollment -->
+        {% if request.resolver_match.app_name == 'enrollment' %}
+            <a
+                href="{% url 'enrollment:list' %}"
+                aria-current="page"
+                class="whitespace-nowrap rounded-md bg-white/15 px-3 py-2 text-sm font-semibold text-white"
+            >
+                Enrollment
+            </a>
+        {% else %}
+            <a
+                href="{% url 'enrollment:list' %}"
+                class="whitespace-nowrap rounded-md px-3 py-2 text-sm text-white/70 hover:bg-white/10 hover:text-white"
+            >
+                Enrollment
+            </a>
+        {% endif %}
+
+        <!-- Requirements -->
+        <a
+            href="#"
+            class="whitespace-nowrap rounded-md px-3 py-2 text-sm text-white/70 hover:bg-white/10 hover:text-white"
+        >
+            Requirements
+        </a>
+
+    </nav>
+
+    <!-- Sign Out Button -->
+    <div class="mt-auto border-t border-white/15 pt-4">
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="flex w-full items-center gap-3 rounded-md px-3 py-3 text-sm font-semibold text-red-300 transition hover:bg-red-500/10 hover:text-red-400"
+            >
+                <!-- Logout SVG Icon -->
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+
+                <span>Sign Out</span>
+            </button>
+        </form>
+    </div>
+
+</aside>
