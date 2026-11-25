@@ -96,13 +96,15 @@
                 </div>
             </form>
 
+
             <!-- Admin Login (class demo only) -->
-            <form method="POST" class="w-full space-y-4 p-6 pb-3"
+            <form
                 method="POST"
                 action="{% url 'demo_admin_login' %}"
-                class="px-6 pb-6 sm:px-8 sm:pb-8"
+                class="w-full space-y-4 px-6 pb-6 sm:px-8 sm:pb-8"
             >
                 {% csrf_token %}
+
                 <button
                     type="submit"
                     class="w-full rounded-lg border border-line bg-transparent px-4 py-3 font-semibold text-ink transition hover:bg-page"
@@ -110,6 +112,7 @@
                     Admin Login
                 </button>
             </form>
+
 
         </div>
     </main>
