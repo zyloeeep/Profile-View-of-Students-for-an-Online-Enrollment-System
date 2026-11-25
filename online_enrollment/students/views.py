@@ -1,14 +1,36 @@
-
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 
 from config.permissions import staff_required
 from enrollment.models import Enrollment, Program
 
 from .forms import RegistrationForm
 from .models import Student
+
+
+@require_POST
+def demo_admin_login(request):
+    """One-click admin login for the class demo (DEBUG only)."""
+
+    # Disabled automatically when DEBUG is False
+    if not settings.DEBUG:
+        raise Http404
+
+    admin = get_user_model().objects.filter(is_superuser=True).first()
+
+    if admin is None:
+        messages.error(request, "No admin account found.")
+        return redirect("login")
+
+    login(request, admin, backend=settings.AUTHENTICATION_BACKENDS[0])
+    return redirect("students:student_list")
 
 
 @staff_required

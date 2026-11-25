@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -12,98 +11,107 @@
 
 <body class="flex min-h-screen items-center justify-center bg-page px-4 py-8 text-ink">
 
-    <main class="w-full max-w-5xl">
+    <main class="w-full max-w-md">
 
-        <form
-            method="POST"
-            class="w-full space-y-4 rounded-2xl border border-line bg-surface p-6 sm:p-8"
-        >
-            {% csrf_token %}
+        <!-- Card -->
+        <div class="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface">
 
-            <!-- Heading -->
-            <div class="mb-4 text-center">
-                <h1 class="text-2xl font-bold sm:text-3xl">
-                    Welcome Back!
-                </h1>
+            <!-- Login form -->
+            <form method="POST" class="w-full space-y-4 p-6 pb-3 sm:p-8 sm:pb-3">
+                {% csrf_token %}
 
-                <p class="mt-2 text-sm text-muted sm:text-base">
-                    Login to access your account.
-                </p>
-            </div>
+                <!-- Heading -->
+                <div class="mb-4">
+                    <h1 class="text-2xl font-bold sm:text-3xl">Welcome Back!</h1>
+                    <p class="mt-2 text-sm text-muted sm:text-base">
+                        Login to access your account.
+                    </p>
+                </div>
 
-            <!-- Error Messages -->
-            {% if form.non_field_errors %}
-                <div class="rounded-lg bg-bad-soft px-4 py-3 text-sm text-bad">
-                    {% for error in form.non_field_errors %}
-                        <p>{{ error }}</p>
+                <!-- Error Messages -->
+                {% if form.non_field_errors %}
+                    <div class="rounded-lg bg-bad-soft px-4 py-3 text-sm text-bad">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% for message in messages %}
+                    <div class="rounded-lg px-4 py-3 text-sm
+                        {% if message.tags == 'success' %}
+                            bg-green-50 text-green-800
+                        {% else %}
+                            bg-bad-soft text-bad
+                        {% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                <!-- Email Address -->
+                <div class="space-y-2">
+                    <label for="{{ form.email.id_for_label }}" class="block text-sm font-semibold">
+                        Email Address
+                    </label>
+
+                    {{ form.email }}
+
+                    {% for error in form.email.errors %}
+                        <p class="text-sm text-bad">{{ error }}</p>
                     {% endfor %}
                 </div>
-            {% endif %}
 
-            {% for message in messages %}
-                <div class="rounded-lg px-4 py-3 text-sm
-                    {% if message.tags == 'success' %}
-                        bg-green-50 text-green-800
-                    {% else %}
-                        bg-bad-soft text-bad
-                    {% endif %}">
-                    {{ message }}
+                <!-- Password -->
+                <div class="space-y-2">
+                    <label for="{{ form.password.id_for_label }}" class="block text-sm font-semibold">
+                        Password
+                    </label>
+
+                    {{ form.password }}
+
+                    {% for error in form.password.errors %}
+                        <p class="text-sm text-bad">{{ error }}</p>
+                    {% endfor %}
                 </div>
-            {% endfor %}
 
-            <!-- Email Address -->
-            <div class="space-y-2">
-                <label for="{{ form.email.id_for_label }}"
-                       class="block text-sm font-semibold">
-                    Email Address
-                </label>
+                <!-- Preserve redirect destination -->
+                <input type="hidden" name="next" value="{{ next }}">
 
-                {{ form.email }}
-
-                {% for error in form.email.errors %}
-                    <p class="text-sm text-bad">{{ error }}</p>
-                {% endfor %}
-            </div>
-
-            <!-- Password -->
-            <div class="space-y-2">
-                <label for="{{ form.password.id_for_label }}"
-                       class="block text-sm font-semibold">
-                    Password
-                </label>
-
-                {{ form.password }}
-
-                {% for error in form.password.errors %}
-                    <p class="text-sm text-bad">{{ error }}</p>
-                {% endfor %}
-            </div>
-
-            <!-- Preserve redirect destination -->
-            <input type="hidden" name="next" value="{{ next }}">
-
-            <!-- Login Button -->
-            <button
-                type="submit"
-                class="w-full rounded-lg bg-brand-solid px-4 py-3 font-semibold text-white transition hover:bg-brand-solid/80"
-            >
-                Login
-            </button>
-
-            <!-- Registration Link -->
-            <p class="pt-2 text-center text-sm text-muted sm:text-base">
-                Don't have an account?
-
-                <a
-                    href="{% url 'students:register' %}"
-                    class="font-semibold text-brand-solid hover:underline"
+                <!-- Login Button -->
+                <button
+                    type="submit"
+                    class="w-full rounded-lg bg-brand-solid px-4 py-3 font-semibold text-white transition hover:bg-brand-solid/80"
                 >
-                    Enroll now
-                </a>
-            </p>
+                    Login
+                </button>
 
-        </form>
+                <!-- Forgot Password -->
+                <div class="text-right">
+                    <a
+                        href="#"
+                        class="text-sm font-semibold text-brand-solid hover:underline"
+                    >
+                        Forgot password?
+                    </a>
+                </div>
+            </form>
 
+            <!-- Admin Login (class demo only) -->
+            <form method="POST" class="w-full space-y-4 p-6 pb-3"
+                method="POST"
+                action="{% url 'demo_admin_login' %}"
+                class="px-6 pb-6 sm:px-8 sm:pb-8"
+            >
+                {% csrf_token %}
+                <button
+                    type="submit"
+                    class="w-full rounded-lg border border-line bg-transparent px-4 py-3 font-semibold text-ink transition hover:bg-page"
+                >
+                    Admin Login
+                </button>
+            </form>
+
+        </div>
     </main>
 
 </body>

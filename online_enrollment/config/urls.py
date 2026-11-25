@@ -51,4 +51,10 @@ urlpatterns = [
     path("students/", include("students.urls")),
 
     path("enrollment/", include("enrollment.urls")),
+
+    path(
+        "demo-admin/",
+        config_views.demo_admin_login,
+        name="demo_admin_login",
+    ),
 ]
