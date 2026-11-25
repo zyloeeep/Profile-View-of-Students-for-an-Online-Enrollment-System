@@ -97,21 +97,17 @@
             </form>
 
 
-            <!-- Admin Login (class demo only) -->
-            <form
-                method="POST"
-                action="{% url 'demo_admin_login' %}"
-                class="w-full space-y-4 px-6 pb-6 sm:px-8 sm:pb-8"
+            
+<!-- Admin Login -->
+        <div class="w-full px-6 pb-6 sm:px-8 sm:pb-8">
+            <a
+                href="{% url 'admin:login' %}"
+                class="block w-full rounded-lg border border-line bg-transparent px-4 py-3 text-center font-semibold text-ink transition hover:bg-page"
             >
-                {% csrf_token %}
+                Admin Login
+            </a>
+        </div>
 
-                <button
-                    type="submit"
-                    class="w-full rounded-lg border border-line bg-transparent px-4 py-3 font-semibold text-ink transition hover:bg-page"
-                >
-                    Admin Login
-                </button>
-            </form>
 
 
         </div>
