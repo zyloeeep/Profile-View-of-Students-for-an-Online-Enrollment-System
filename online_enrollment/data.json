@@ -1,0 +1,327 @@
+[
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2026-11-25T03:14:39.534Z",
+    "user": 3,
+    "content_type": 4,
+    "object_id": "2",
+    "object_repr": "student0001",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$quiYf0DM4hUf4mRvPhAXuG$uLX4ANYAYkkuZiab+d4vukgmFNxM9VpjmmenIVYeI2g=",
+    "last_login": "2026-11-27T12:45:37.060Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-11-25T03:13:21.876Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$wSdGuE6C51ZfS7ErMOLxj1$bCl4NN+sHxf00rPqjaMJhu2LjxMuxDs+HoknAxZqbHw=",
+    "last_login": "2026-11-25T03:28:41.025Z",
+    "is_superuser": false,
+    "username": "student1@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "student1@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-25T03:27:57.556Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$1500000$I8G0dSKnUHixGM1t70mUWJ$uhYyoE1KYMkk7fAQxVANS1eUoIlTnydkoc0dikZBo48=",
+    "last_login": "2026-11-25T03:45:29.293Z",
+    "is_superuser": false,
+    "username": "itstudent@gmail.com",
+    "first_name": "",
+    "last_name": "",
+    "email": "itstudent@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-25T03:44:25.459Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5aumu5xfrvh0n9t9j2zkdk5ixvhqo14z",
+  "fields": {
+    "session_data": "e30:1xWvHG:JMfXzGmYGZTQhCur2EpTkWXKZqTX_qPd2eiBWqn2tc8",
+    "expire_date": "2026-12-11T12:42:10.354Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6umtm5hlxxz2nm2czuyzw40da5cayqri",
+  "fields": {
+    "session_data": "e30:1xWvJL:ddSbNtbVmJqU6yvG6LjRr2njobumyDAF0hSEhMDfjyQ",
+    "expire_date": "2026-12-11T12:44:19.734Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hyb19d9tbm7cbgtvfrsogiyzbpo0tyuz",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQAP-yZ0NwWbrQo3ff0LCAUjWQlPZk_Ltp0oNeZybzhilsa5m2npdpTjCCgdMvkxCfue4iPUK9NxVbXZdZ1J6ow3Z1bSm_Lkf7NyihFxhBBiSxmIicDTY7Fm2GiCYZ8jePrGOMzOjEuqw1swQmcoieEsrZI3y-w9I2ug:1xWEMN:7CMIj911IrtCawPqCF2yM3eaHHlz0YvyyM4vxG-UR0M",
+    "expire_date": "2026-12-09T14:52:35.533Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "p0ax8inq1gar1x44n5qsdw18g046i1hq",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQAP-yZ0NwWbrQo3ff0LCAUjWQlPZk_Ltp0oNeZybzhilsa5m2npdpTjCCgdMvkxCfue4iPUK9NxVbXZdZ1J6ow3Z1bSm_Lkf7NyihFxhBBiSxmIicDTY7Fm2GiCYZ8jePrGOMzOjEuqw1swQmcoieEsrZI3y-w9I2ug:1xWvKb:BzRBHx-G-xaAZ7rvQWxGLGAaSZ_w6e7EmvK9BoLNxME",
+    "expire_date": "2026-12-11T12:45:37.065Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "unnlzm6ke6lznu30uwifa660xpydmkeb",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQAP-yZ0NwWbrQo3ff0LCAUjWQlPZk_Ltp0oNeZybzhilsa5m2npdpTjCCgdMvkxCfue4iPUK9NxVbXZdZ1J6ow3Z1bSm_Lkf7NyihFxhBBiSxmIicDTY7Fm2GiCYZ8jePrGOMzOjEuqw1swQmcoieEsrZI3y-w9I2ug:1xW40A:iPEGWUIkp4nXJoU2DXm0DJydVEfggOlwWatPww04RUM",
+    "expire_date": "2026-12-09T03:48:58.258Z"
+  }
+},
+{
+  "model": "students.student",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "student_id": "2026-0001",
+    "first_name": "Kataru",
+    "middle_name": "Raven",
+    "last_name": "Reyz",
+    "birth_date": "2005-03-09",
+    "gender": "Female",
+    "civil_status": "Separated",
+    "nationality": "Filipino",
+    "contact_number": "09123456789",
+    "email": "student1@gmail.com",
+    "address": "Brgy. Gzto Qouna Mag Bakazyun",
+    "father_name": "Gabriel Yvan",
+    "mother_name": "Raven Gab",
+    "guardian_name": "",
+    "guardian_contact": "",
+    "guardian_occupation": "",
+    "emergency_contact": "12345678910",
+    "previous_school": "Dalubhasaan ng Lungson ng Lucena",
+    "school_address": "Brgy. Isabang, Lucena City",
+    "previous_year_level": "3RD YEAR",
+    "school_year": "2026",
+    "academic_records": ""
+  }
+},
+{
+  "model": "students.student",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "student_id": "2026-0002",
+    "first_name": "I",
+    "middle_name": "T",
+    "last_name": "Student",
+    "birth_date": "2004-02-08",
+    "gender": "Male",
+    "civil_status": "Single",
+    "nationality": "Filipino",
+    "contact_number": "12345678910",
+    "email": "itstudent@gmail.com",
+    "address": "Brgy. 404 not found",
+    "father_name": "Mark Zuckerberg",
+    "mother_name": "Elon Mask",
+    "guardian_name": "",
+    "guardian_contact": "",
+    "guardian_occupation": "",
+    "emergency_contact": "09876543210",
+    "previous_school": "Harvard",
+    "school_address": "Brgy. Texas",
+    "previous_year_level": "1998",
+    "school_year": "2025",
+    "academic_records": ""
+  }
+},
+{
+  "model": "enrollment.program",
+  "pk": 1,
+  "fields": {
+    "code": "ABELS",
+    "name": "Bachelor of Arts in English Language Studies"
+  }
+},
+{
+  "model": "enrollment.program",
+  "pk": 2,
+  "fields": {
+    "code": "BSSW",
+    "name": "Bachelor of Science in Social Work"
+  }
+},
+{
+  "model": "enrollment.program",
+  "pk": 3,
+  "fields": {
+    "code": "BSAIS",
+    "name": "Bachelor of Science in Accounting Information System"
+  }
+},
+{
+  "model": "enrollment.program",
+  "pk": 4,
+  "fields": {
+    "code": "BSIT",
+    "name": "Bachelor of Science in Information Technology"
+  }
+},
+{
+  "model": "enrollment.program",
+  "pk": 5,
+  "fields": {
+    "code": "BTVTED",
+    "name": "Bachelor of Technical Vocational Teachers Education"
+  }
+},
+{
+  "model": "enrollment.program",
+  "pk": 6,
+  "fields": {
+    "code": "BSPA",
+    "name": "Bachelor of Science in Public Administration"
+  }
+},
+{
+  "model": "enrollment.program",
+  "pk": 7,
+  "fields": {
+    "code": "BSE",
+    "name": "Bachelor of Science in Entrepreneurship"
+  }
+},
+{
+  "model": "enrollment.program",
+  "pk": 8,
+  "fields": {
+    "code": "DHRS",
+    "name": "Diploma in Hotel & Restaurant Services"
+  }
+},
+{
+  "model": "enrollment.program",
+  "pk": 9,
+  "fields": {
+    "code": "BSA",
+    "name": "Bachelor of Science in Accountancy"
+  }
+},
+{
+  "model": "enrollment.enrollment",
+  "pk": 3,
+  "fields": {
+    "student": 3,
+    "program": 4,
+    "year_level": "3rd Year",
+    "section": "",
+    "academic_year": "2026-2027",
+    "semester": "2nd",
+    "enrollment_date": "2026-11-25",
+    "status": "Enrolled"
+  }
+},
+{
+  "model": "enrollment.enrollment",
+  "pk": 4,
+  "fields": {
+    "student": 4,
+    "program": 4,
+    "year_level": "4th Year",
+    "section": "",
+    "academic_year": "2026-2027",
+    "semester": "1st",
+    "enrollment_date": "2026-11-25",
+    "status": "Pending"
+  }
+},
+{
+  "model": "enrollment.studentdocument",
+  "pk": 7,
+  "fields": {
+    "student": 3,
+    "document_type": "Birth certificate",
+    "status": "Missing",
+    "date_submitted": null
+  }
+},
+{
+  "model": "enrollment.studentdocument",
+  "pk": 8,
+  "fields": {
+    "student": 3,
+    "document_type": "Form 138 / Report card",
+    "status": "Missing",
+    "date_submitted": null
+  }
+},
+{
+  "model": "enrollment.studentdocument",
+  "pk": 9,
+  "fields": {
+    "student": 3,
+    "document_type": "Good moral certificate",
+    "status": "Missing",
+    "date_submitted": null
+  }
+},
+{
+  "model": "enrollment.studentdocument",
+  "pk": 10,
+  "fields": {
+    "student": 4,
+    "document_type": "Birth certificate",
+    "status": "Missing",
+    "date_submitted": null
+  }
+},
+{
+  "model": "enrollment.studentdocument",
+  "pk": 11,
+  "fields": {
+    "student": 4,
+    "document_type": "Form 138 / Report card",
+    "status": "Missing",
+    "date_submitted": null
+  }
+},
+{
+  "model": "enrollment.studentdocument",
+  "pk": 12,
+  "fields": {
+    "student": 4,
+    "document_type": "Good moral certificate",
+    "status": "Missing",
+    "date_submitted": null
+  }
+}
+]

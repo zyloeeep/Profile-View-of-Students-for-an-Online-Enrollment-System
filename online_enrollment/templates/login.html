@@ -95,20 +95,18 @@
                     </a>
                 </div>
             </form>
-
-
-            
-<!-- Admin Login -->
-        <div class="w-full px-6 pb-6 sm:px-8 sm:pb-8">
-            <a
-                href="{% url 'admin:login' %}"
+            <!-- Admin Login -->
+            <div class="w-full px-6 pb-6 sm:px-8 sm:pb-8">
+            <form method="POST" action="{% url 'students:demo_admin_login' %}">
+                {% csrf_token %}
+                <button
+                type="submit"
                 class="block w-full rounded-lg border border-line bg-transparent px-4 py-3 text-center font-semibold text-ink transition hover:bg-page"
-            >
+                >
                 Admin Login
-            </a>
-        </div>
-
-
+                </button>
+            </form>
+            </div>
 
         </div>
     </main>

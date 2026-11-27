@@ -14,24 +14,23 @@ from enrollment.models import Enrollment, Program
 from .forms import RegistrationForm
 from .models import Student
 
-
 @require_POST
 def demo_admin_login(request):
-    """One-click admin login for the class demo (DEBUG only)."""
-
-    # Disabled automatically when DEBUG is False
-    if not settings.DEBUG:
+    """One-click admin login for the class demo (DEMO_MODE only)."""
+    if not settings.DEMO_MODE:
         raise Http404
 
-    admin = get_user_model().objects.filter(is_superuser=True).first()
-
-    if admin is None:
-        messages.error(request, "No admin account found.")
-        return redirect("login")
+    User = get_user_model()
+    admin, created = User.objects.get_or_create(
+        username="demo_admin",
+        defaults={"is_staff": True, "is_superuser": False, "email": "demo@example.com"},
+    )
+    if created:
+        admin.set_unusable_password()
+        admin.save()
 
     login(request, admin, backend=settings.AUTHENTICATION_BACKENDS[0])
-    return redirect("students:student_list")
-
+    return redirect("students:list")
 
 @staff_required
 def student_list(request):
